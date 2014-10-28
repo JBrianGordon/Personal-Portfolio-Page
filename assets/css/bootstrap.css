@@ -5,6 +5,25 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+video {
+position: fixed; right: 0; bottom: 0;
+min-width: 100%; min-height: 100%;
+width: auto; height: auto; z-index: -100;
+background: url('../images/header-bg.jpg') no-repeat;
+background-size: cover;
+transition: 1s opacity;
+}
+
+.stopfade { opacity: .5; }
+
+video { display: block; }
+
+@media screen and (max-device-width: 800px) {
+html { background: url('../images/header-bg.jpg') #000 no-repeat center center fixed; }
+#bgvid { display: none; }
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
