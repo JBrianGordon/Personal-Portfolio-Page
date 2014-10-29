@@ -19,8 +19,8 @@ transition: 1s opacity;
 
 video { display: block; }
 
-@media screen and (max-device-width: 800px) {
-html { background: url('../images/header-bg.jpg') #000 no-repeat center center fixed; }
+@media screen and (max-device-width: 620px) {
+video { background: url('../images/header-bg.jpg') #000 no-repeat center center fixed; }
 #bgvid { display: none; }
 }
 
