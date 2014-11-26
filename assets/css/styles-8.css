@@ -3,8 +3,7 @@
 -------------------------*/
 
         #BasemapToggle {
-      position: absolute;
-      top: 4850px;
+      position: relative;
       right: 20px;
       z-index: 50;
     }
@@ -21,16 +20,11 @@
     }
 
     .title {
-    padding: 10px 0 10px 10px;
+    padding: 10px 0 10px;
     }
 
     .titleButton {
       visibility: hidden;
-    }
-
-    .esriScalebar {
-        position: absolute;
-        top: 5200px;
     }
 
 /*-----------------------

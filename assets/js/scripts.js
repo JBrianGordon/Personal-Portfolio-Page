@@ -305,24 +305,11 @@ $(document).ready(function() {
 			map.on("load", addPoint);
 
 			function addPoint(evt) {
-				map.infoWindow.setTitle("Where I'm coming from");
-				map.infoWindow.setContent("Yes, I'm willing to drive");
+				map.infoWindow.setTitle("<center>Where I'm coming from</center>");
+				map.infoWindow.setContent("<center>Yes, I'm willing to drive</center>");
 				map.infoWindow.show(location);
 				map.infoWindow.resize(250,100);
 			}
-
-			var scalebar = new Scalebar({
-				map: map
-			});
-
-			var toggle = new BasemapToggle({
-				map: map,
-				basemap: "streets"
-			}, "BasemapToggle");
-
-
-			toggle.startup();
-
 		});
 	/*============================================
 	Waypoints Animations
