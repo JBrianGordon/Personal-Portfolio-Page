@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/css/flexslider.css">
 		<link rel="stylesheet" href="assets/css/styles-8.css">
+		<link rel="stylesheet" href="http://js.arcgis.com/3.11/esri/css/esri.css">
 
 		<!-- ==============================================
 		Fonts
@@ -100,7 +101,6 @@
 		<![endif]-->
 
 		<video autoplay loop poster="assets/images/header-bg.jpg" id="bgvid">
-		<source src="assets/images/Brian-Header-DeFocused-Graded.webm" type="video/webm">
 		<source src="assets/images/Brian-Header-DeFocused-Graded.m4v" type="video/mp4">
 		</video>
 
@@ -458,9 +458,11 @@
 		<!-- ==============================================
 		MAP
 		=============================================== -->
-		<section id="map">
+		<section class="claro">
 
-			<div id="gmap"></div>
+			  <div id="map" class="map">
+                       <div id="BasemapToggle"></div>
+                    </div>
 
 		</section>
 
@@ -497,23 +499,9 @@
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script src="assets/js/contact.js"></script>
 		<script src="assets/js/scripts.js"></script>
-
-		<script>
-
-			var mapPoint = {
-					'lat': 34.138022,
-					'lng': -117.8680081,
-					'zoom' : 13,
-					'infoText':'<p>Oh yes,\
-								<br/>I am more than\
-								<br/>willing to drive</p>',
-					'linkText':'View on Google Maps',
-					'mapAddress':'Glendora, CA 91740',
-					'icon': 'assets/images/pin-dark.png'
-				};
+		<script src="http://js.arcgis.com/3.11/"></script>
 
 
-		</script>
 
 	</body>
 

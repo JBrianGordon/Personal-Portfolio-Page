@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	$(window).load(function(){
 		$('#page-loader').fadeOut(500,function(){
-			loadGmap();
+			// loadGmap();
 		});
 
 	})
@@ -21,8 +21,8 @@ $(document).ready(function() {
 
 	$(window).scroll( function() {
 		var st = $(this).scrollTop(),
-			wh = $(window).height(),
-			sf = 1.2 - st/(10*wh);
+		wh = $(window).height(),
+		sf = 1.2 - st/(10*wh);
 
 		$('.backstretch img').css({
 			'transform' : 'scale('+sf+')',
@@ -40,8 +40,8 @@ $(document).ready(function() {
 	});
 
 	var st = $(this).scrollTop(),
-		wh = $(window).height(),
-		sf = 1.2 - st/(10*wh);
+	wh = $(window).height(),
+	sf = 1.2 - st/(10*wh);
 
 	$('.backstretch img').css({
 		'transform' : 'scale('+sf+')',
@@ -155,12 +155,12 @@ $(document).ready(function() {
 		e.preventDefault();
 
 		var elem = $(this),
-			title = elem.find('.project-title').text(),
-			descr = elem.find('.project-description').html(),
-			slidesHtml = '<ul class="slides">',
-			elemDataCont = elem.find('.project-description');
+		title = elem.find('.project-title').text(),
+		descr = elem.find('.project-description').html(),
+		slidesHtml = '<ul class="slides">',
+		elemDataCont = elem.find('.project-description');
 
-			slides = elem.find('.project-description').data('images').split(',');
+		slides = elem.find('.project-description').data('images').split(',');
 
 		for (var i = 0; i < slides.length; ++i) {
 			slidesHtml = slidesHtml + '<li><img src='+slides[i]+' alt=""></li>';
@@ -186,11 +186,11 @@ $(document).ready(function() {
 			$('.masonry-wrapper').slideUp();
 
 			$('html,body').scrollTo(0,'#filter-works',
-				{
-					gap:{y:-20},
-					animation:{
-						duration:400
-					}
+			{
+				gap:{y:-20},
+				animation:{
+					duration:400
+				}
 			});
 
 			$('#project-slider').flexslider({
@@ -241,15 +241,15 @@ $(document).ready(function() {
 	Twitter
 	==============================================*/
 	var tweetsLength = $('#twitter-slider').data('tweets-length'),
-		widgetID = $('#twitter-slider').data('widget-id');
+	widgetID = $('#twitter-slider').data('widget-id');
 
 	twitterFetcher.fetch(widgetID, 'twitter-slider', tweetsLength, true, false, true, '', false, handleTweets);
 
 	function handleTweets(tweets){
 
 		var x = tweets.length,
-			n = 0,
-			tweetsHtml = '<ul class="slides">';
+		n = 0,
+		tweetsHtml = '<ul class="slides">';
 
 		while(n < x) {
 			tweetsHtml += '<li>' + tweets[n] + '</li>';
@@ -277,56 +277,53 @@ $(document).ready(function() {
 	/*============================================
 	Contact Map
 	==============================================*/
-	function loadGmap(){
+	var map;
 
-	if($('#gmap').length){
+	require([
+		"esri/map",
+		"esri/dijit/BasemapToggle",
+		"esri/dijit/Scalebar",
+		"dojo/parser",
+		"esri/geometry/Point",
+		"esri/InfoWindowBase",
+		"dojo/dom-style",
+		"dojo/domReady!"
+		], function(
+			Map, BasemapToggle, Scalebar, parser, Point,
+			InfoWindowBase, domStyle
+			){
+			parser.parse();
 
-		var map;
-		var mapstyles = [ { "stylers": [ { "saturation": -100 } ] } ];
+			map = new Map("map", {
+				center: [-117.84, 34.14 ],
+				zoom: 11,
+				basemap: "topo"
+			});
 
-		var infoWindow = new google.maps.InfoWindow;
+			var location = new Point([-117.84, 34.14]);
 
-		var pointLatLng = new google.maps.LatLng(mapPoint.lat, mapPoint.lng);
+			map.on("load", addPoint);
 
-		var mapOptions = {
-			zoom: mapPoint.zoom,
-			center: pointLatLng,
-			zoomControl : true,
-			panControl : false,
-			streetViewControl : false,
-			mapTypeControl: false,
-			overviewMapControl: false,
-			scrollwheel: false,
-			styles: mapstyles
-		}
+			function addPoint(evt) {
+				map.infoWindow.setTitle("Where I'm coming from");
+				map.infoWindow.setContent("Yes, I'm willing to drive");
+				map.infoWindow.show(location);
+				map.infoWindow.resize(250,100);
+			}
 
-		map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
+			var scalebar = new Scalebar({
+				map: map
+			});
 
-		var marker = new google.maps.Marker({
-			position: pointLatLng,
-			map: map,
-			title:mapPoint.linkText,
-			icon: mapPoint.icon
+			var toggle = new BasemapToggle({
+				map: map,
+				basemap: "streets"
+			}, "BasemapToggle");
+
+
+			toggle.startup();
+
 		});
-
-		var mapLink = 'https://www.google.com/maps/preview?ll='+mapPoint.lat+','+mapPoint.lng+'&z=14&q='+mapPoint.mapAddress;
-
-		var html = '<div class="infowin">'
-				+ mapPoint.infoText
-				+ '<a href="'+mapLink+'" target="_blank">'+mapPoint.linkText+'</a>'
-				+ '</div>';
-
-		google.maps.event.addListener(marker, 'mouseover', function() {
-			infoWindow.setContent(html);
-			infoWindow.open(map, marker);
-		});
-
-		google.maps.event.addListener(marker, 'click', function() {
-			window.open(mapLink,'_blank');
-		});
-
-	}
-	}
 	/*============================================
 	Waypoints Animations
 	==============================================*/

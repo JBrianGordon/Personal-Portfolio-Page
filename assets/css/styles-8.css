@@ -1,4 +1,39 @@
 /*-----------------------
+----- Map Styles -----
+-------------------------*/
+
+        #BasemapToggle {
+      position: absolute;
+      top: 4850px;
+      right: 20px;
+      z-index: 50;
+    }
+
+    .path {
+      width: 50px;
+      height: 50px;
+    }
+
+    .title, .content {
+      font-size: 20px;
+      color: #52CCBA;
+      font-family: Raleway, Arial, sans-serif;
+    }
+
+    .title {
+    padding: 10px 0 10px 10px;
+    }
+
+    .titleButton {
+      visibility: hidden;
+    }
+
+    .esriScalebar {
+        position: absolute;
+        top: 5200px;
+    }
+
+/*-----------------------
 ----- Basic Styles -----
 -------------------------*/
 
